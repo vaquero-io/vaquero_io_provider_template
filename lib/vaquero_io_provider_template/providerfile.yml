@@ -1,0 +1,79 @@
+provider:
+
+  require:
+    - vcenter
+    - network
+    - compute
+
+  platform:
+    path:
+    params:
+      count:
+        type: integer
+        range: 1..40
+      cmserver:
+        type: URL
+      cmrunlist:
+        array:
+          type: string
+          match: '(role|recipe)\[([-_a-zA-Z0-9#]+)\]'
+      addresses:
+        array:
+          type: IP
+
+  vcenter:
+    path: 'infrastructure'
+    params:
+      timezone:
+        type: integer
+        range: 0..300
+      datacenter:
+        type: URL
+      imagefolder:
+        type: string
+        match: '((?:[a-zA-Z]\:){0,1}(?:[\\/][\w.]+){1,})'
+      destfolder:
+        type: string
+        match: '((?:[a-zA-Z]\:){0,1}(?:[\\/][\w.]+){1,})'
+      datastore:
+        type: string
+        match: '\A(?:[ \w-]+\/?)+\z'
+      domain:
+        type: string
+        match: '\A(?:[ \w-]+\/?)+\z'
+      dnsips:
+        array:
+          type: IP
+
+  network:
+    path: 'infrastructure'
+    params:
+      vlandid:
+        type: string
+        match: '\A(?:[\w-]+\/?)+\z'
+      gateway:
+        type: IP
+      netmask:
+        type: integer
+        range: 1..24
+
+  compute:
+    path: 'infrastructure'
+    params:
+      ram:
+        type: integer
+        range: 128..262144
+      cpu:
+        type: integer
+        range: 1..16
+      image:
+        type: string
+        match: '\A(?:[.\w-]+\/?)+\z'
+      drive:
+        hash:
+          mount:
+            type: string
+            match: '((?:[a-zA-Z]\:){0,1}(?:[\\/][\w.]+){1,})'
+          capacity:
+            type: integer
+            range: 4096..2048000
