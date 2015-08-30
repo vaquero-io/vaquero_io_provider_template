@@ -3,12 +3,12 @@ require 'vaquero_io_provider_template/version'
 module VaqueroIo
   # this module will be extended to ProviderPlugin class in vaquero_io
   module ProviderPluginExtensions
-    def create(args, _options = nil)
-      "create function with arguments:#{args} and options:#{_options}"
+    def create(args, options = nil)
+      "create function with arguments:#{args} and options:#{options}"
     end
 
-    def destroy(args, _options = nil)
-      "destroy function with arguments:#{args} and options:#{_options}"
+    def destroy(args, options = nil)
+      "destroy function with arguments:#{args} and options:#{options}"
     end
 
     def name
