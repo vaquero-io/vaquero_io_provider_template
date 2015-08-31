@@ -5,6 +5,11 @@ require 'vaquero_io_provider_template'
 
 describe 'base provider' do
   let(:test_class) { Class.new { extend VaqueroIo::ProviderPluginExtensions } }
+  let(:providerfile) do
+    Pathname.new(File.expand_path('../../../', __FILE__)) +
+      'vaquero_io_provider_template' + 'lib/' \
+      'vaquero_io_provider_template' + 'providerfile.yml'
+  end
 
   it '.version should return the version' do
     expect(test_class.version).to eq '2.0.0'
@@ -23,16 +28,26 @@ describe 'base provider' do
     expect(test_class.destroy('arguments', 'options')).to eq \
       'destroy function with arguments:arguments and options:options'
   end
-end
 
-describe 'provider .definition function' do
-  let(:providerfile) do
-    Pathname.new(File.expand_path('../../../', __FILE__)) +
-      'vaquero_io_provider_template' + 'lib/' \
-      'vaquero_io_provider_template' + 'providerfile.yml'
-  end
+  it '.definition function will not work from default gem path'
 
-  it 'should load the providerfile.yml without error' do
+  it 'the providerfile.yml shoud load without error' do
     expect { YAML.load_file(providerfile) }.to_not raise_error
   end
 end
+
+# describe 'provider .definition function' do
+#   let(:providerfile) do
+#     Pathname.new(File.expand_path('../../../', __FILE__)) +
+#       'vaquero_io_provider_template' + 'lib/' \
+#       'vaquero_io_provider_template' + 'providerfile.yml'
+#   end
+#
+#   it 'but the providerfile.yml shoud load without error' do
+#     expect { YAML.load_file(providerfile) }.to_not raise_error
+#   end
+#
+#   it 'but the providerfile.yml shoud load without error' do
+#     expect { YAML.load_file(providerfile) }.to_not raise_error
+#   end
+# end
