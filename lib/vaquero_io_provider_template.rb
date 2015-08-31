@@ -19,12 +19,13 @@ module VaqueroIo
       VaqueroIo::ProviderPluginExtensions::VERSION
     end
 
-    def definition
+    def definition(test_path = nil)
       gem_root ||= Pathname.new(File.expand_path('../../../', __FILE__))
       template_path = VaqueroIo::ProviderPluginExtensions::PLUGIN_NAME + '-' +
                       VaqueroIo::ProviderPluginExtensions::VERSION + '/lib/' +
                       VaqueroIo::ProviderPluginExtensions::PLUGIN_NAME
       providerfile_path = gem_root + template_path + 'providerfile.yml'
+      providerfile_path = test_path + 'providerfile.yml' if test_path
       YAML.load_file(providerfile_path)
     end
   end
