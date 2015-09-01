@@ -1,6 +1,6 @@
 provider:
 
-  require:
+  infrastructure:
     - vcenter
     - network
     - compute
