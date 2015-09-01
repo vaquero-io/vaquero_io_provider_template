@@ -6,7 +6,6 @@ provider:
     - compute
 
   platform:
-    path:
     params:
       count:
         type: integer
@@ -22,7 +21,6 @@ provider:
           type: IP
 
   vcenter:
-    path: 'infrastructure'
     params:
       timezone:
         type: integer
@@ -46,7 +44,6 @@ provider:
           type: IP
 
   network:
-    path: 'infrastructure'
     params:
       vlandid:
         type: string
@@ -58,7 +55,6 @@ provider:
         range: 1..24
 
   compute:
-    path: 'infrastructure'
     params:
       ram:
         type: integer
