@@ -6,70 +6,68 @@ provider:
     - compute
 
   platform:
-    params:
-      count:
-        type: integer
-        range: 1..40
-      cmserver:
-        type: URL
-      cmrunlist:
-        array:
-          type: string
-          match: '(role|recipe)\[([-_a-zA-Z0-9#]+)\]'
-      addresses:
-        array:
-          type: IP
+    count:
+      type: integer
+      range: 1..40
+    cmserver:
+      type: URL
+    cmrunlist:
+      array:
+        type: string
+        match: '(role|recipe)\[([-_a-zA-Z0-9#]+)\]'
+    addresses:
+      array:
+        type: IP
 
   vcenter:
-    params:
-      timezone:
-        type: integer
-        range: 0..300
-      datacenter:
-        type: URL
-      imagefolder:
-        type: string
-        match: '((?:[a-zA-Z]\:){0,1}(?:[\\/][\w.]+){1,})'
-      destfolder:
-        type: string
-        match: '((?:[a-zA-Z]\:){0,1}(?:[\\/][\w.]+){1,})'
-      datastore:
-        type: string
-        match: '\A(?:[ \w-]+\/?)+\z'
-      domain:
-        type: string
-        match: '\A(?:[ \w-]+\/?)+\z'
-      dnsips:
-        array:
-          type: IP
+    timezone:
+      type: integer
+      range: 0..300
+    datacenter:
+      type: URL
+    imagefolder:
+      type: string
+      match: '((?:[a-zA-Z]\:){0,1}(?:[\w.]+){1,})'
+    destfolder:
+      type: string
+      match: '((?:[a-zA-Z]\:){0,1}(?:[\w.]+){1,})'
+    datastore:
+      type: string
+      match: '\A(?:[ \w-]+\/?)+\z'
+    domain:
+      type: string
+      match: '((?:[a-zA-Z]\:){0,1}(?:[\w.]+){1,})'
+    dnsips:
+      array:
+        type: IP
 
   network:
-    params:
-      vlandid:
-        type: string
-        match: '\A(?:[\w-]+\/?)+\z'
-      gateway:
-        type: IP
-      netmask:
-        type: integer
-        range: 1..24
+    vlanid:
+      type: string
+      match: '\A(?:[\w-]+\/?)+\z'
+    gateway:
+      type: IP
+    netmask:
+      type: integer
+      range: 1..24
 
   compute:
-    params:
-      ram:
-        type: integer
-        range: 128..262144
-      cpu:
-        type: integer
-        range: 1..16
-      image:
-        type: string
-        match: '\A(?:[.\w-]+\/?)+\z'
-      drive:
-        hash:
-          mount:
-            type: string
-            match: '((?:[a-zA-Z]\:){0,1}(?:[\\/][\w.]+){1,})'
-          capacity:
-            type: integer
-            range: 4096..2048000
+    windows:
+      type: boolean
+    ram:
+      type: integer
+      range: 128..262144
+    cpu:
+      type: integer
+      range: 1..16
+    image:
+      type: string
+      match: '\A(?:[.\w-]+\/?)+\z'
+    disk:
+      hash:
+        mount:
+          type: string
+          match: '((?:[a-zA-Z]\:){0,1}(?:[\w.]+){1,})'
+        capacity:
+          type: integer
+          range: 4096..2048000
