@@ -11,7 +11,7 @@ describe 'base provider' do
   end
 
   it '.version should return the version' do
-    expect(test_class.version).to eq '2.0.0'
+    expect(test_class.version).to eq '2.0.2'
   end
 
   it '.name should return the name' do
@@ -19,13 +19,13 @@ describe 'base provider' do
   end
 
   it '.create method should exist' do
-    expect(test_class.create('arguments', 'options')).to eq \
-      'create function with arguments:arguments and options:options'
+    expect(test_class.create('arguments', 'options', 'auth')).to eq \
+      'create function with arguments:arguments and options:options and auth:auth'
   end
 
   it '.destroy method should exist' do
-    expect(test_class.destroy('arguments', 'options')).to eq \
-      'destroy function with arguments:arguments and options:options'
+    expect(test_class.destroy('arguments', 'options', 'auth')).to eq \
+      'destroy function with arguments:arguments and options:options and auth:auth'
   end
 
   it '.definition should load providerfile.yml without error' do
